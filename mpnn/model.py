@@ -123,7 +123,7 @@ class GraphLevelOutput(nn.Module):
         i_out = self.i(node_states)
         j_out = self.j(node_states)
         # tanh not used on j_out for regression
-        gated = torch.sigmoid(i_out) + j_out
+        gated = torch.sigmoid(i_out) * j_out
 
         gated = gated * mask.unsqueeze(-1)
         # sum over nodes
